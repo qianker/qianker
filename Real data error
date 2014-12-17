@@ -1,0 +1,9 @@
+ #include<stdio.h>
+void main()
+{
+	float g,f;
+	f=123456.789e5;
+	g=f+999;
+	printf("f=%e,f+999=%e\n",f,g);
+
+}
