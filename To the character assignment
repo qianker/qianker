@@ -1,0 +1,11 @@
+#include<stdio.h>
+void main()
+{
+	char c1,c2;
+	c1='a';
+	c2='b';
+	printf("c1=%d,c2=%d\n",c1,c2);
+	c1=65;
+	c2=66;
+	printf("c1=%c,c2=%c\n",c1,c2);
+}
