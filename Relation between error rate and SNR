@@ -1,0 +1,21 @@
+clc
+clear
+echo on
+x=0:15;
+y=x;
+FrequencySeparation=24000;
+BitRate=10000;
+SamplesPerSymbol=2;
+
+for i=1:length(x)
+   SNR=x(i);
+   sim(‘shiyanyi1’);
+   y(i)=mean(BitErrorRate(:,1));
+end;
+
+figure
+semilogy(x,y,’-*’);
+Xlabel(‘信噪比’)；
+ylabel(‘误码率’)；
+title(‘BFSK在无突发干扰下误码率与信噪比的关系’);
+grid on;
