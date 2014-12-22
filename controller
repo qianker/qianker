@@ -1,0 +1,29 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_unsigned.all;
+entity Vhdl2 is
+   port (clk,rst,en,load : in std_logic;
+        data : in   std_logic_vector(3 downto 0);
+        dout : out  std_logic_vector(3 downto 0);
+        cout : out std_logic);
+end Vhdl2;   
+architecture bhv of Vhdl2 is
+begin
+  process(clk,rst,en,load)
+  variable q : std_logic_vector(3 downto 0);
+begin
+  if rst='0' then  q := (others=>'0');
+    elsif clk'event and clk='1' then
+      if en='1' then
+        if (load='0') then q := data; else
+           if q<12 then  q:= q + 1;
+          else q := (others=>'0');
+        end if;
+       end if;
+      end if;
+    end if; 
+    if q="1100" then cout<='1';
+            else cout<='0'; end if;
+        dout <= q;
+  end process;
+end  bhv;
