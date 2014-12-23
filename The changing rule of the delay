@@ -1,0 +1,29 @@
+clear all;
+f=10;
+dt=0.01;
+t0:dt:10;
+L=20;
+taof=2*rand(1,L);
+fai0=rand(1,L)*2*pi;
+st=cos(2*pi*f*t);
+for i=1:L;
+  fai(i,:)=sin(2*pi*taof(i)*t);
+  s(i,:)=cos(2*pi*f*t+fai(i,:)+fai0(i));
+end;
+rt=sum(s)/sqrt(L);
+figure(1);
+subplot(211)
+plot(t,st);xlabel(‘t’) ;ylabel(‘s(t)’) ;title(‘输入单频信号’)；
+axis[0 2-1.5 1.5];
+subplot(212)
+plot(t,rt);xlabel(‘t’) ;ylabel(‘s(t)’) ;title(‘经过20径后接收信号’)；
+figure(2)
+[ff sf]=T2F(t,st);
+[ff rf]=T2F(t,rt);
+subplot(211);
+plot(ff,abs(sf));xlabel(‘f’) ;ylabel(‘s(f)’) ;
+title(‘输入单频信号频谱’)；
+axis[-20 20 0 5];
+subplot(212);
+plot(ff,abs(rf));xlabel(‘f’) ;ylabel(‘r(f)’) ;
+axis[-20 20 0 5]; title(‘多径信道输出信号频谱’)；
