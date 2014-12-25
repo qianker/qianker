@@ -1,0 +1,39 @@
+#include <reg51.h>
+#include <stdio.h>
+#include "LCM16X2P.H"
+#define OSC 11059200
+sbit LCM_BLC=P1^3;
+unsigned char ucTH,ucTL,Ticks;
+ void TOISR(void) interrupt 1
+{
+TH0=ucTH;
+TL0=ucTL;
+TR0=1;
+Ticks++;
+if(Ticks==20)
+{
+Ticks=0;
+LCM_BLC=0;
+}
+}
+
+void main()
+{
+ EA=0;
+Ticks=0;
+ucTH=(65536-OSC/12/20)/256;
+ucTL=(65536-OSC/12/20)%256;
+TMOD=0x01;
+ TH0=ucTH;
+ TL0= ucTL;
+ ET0=1;
+ TR0=1;
+ EA=1;
+
+LCMInit();
+LCMClear();
+LCMDisplayString(0,0,"Songmengmeng ");
+LCMDisplayString(1,0,"208121211");
+LCMBlink(0,13,BLINK);
+while(1);
+}
