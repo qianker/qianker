@@ -1,0 +1,20 @@
+#include<stdio.h>
+void main()
+{
+ int a[10],i;
+ void func(int b{});
+ for(i=0;i<10;i++)
+   a[i]=i+1;
+ Printf(“Before call func:\n”);
+ func(a);
+ printf(“After call func:\n”);
+ for(i=0;i<10;i++)
+   printf(“%d”,a[i]);
+printf(“\n”);
+}
+void func(int b[])
+{
+  int i;
+  for(i=0;i<10;i++)
+b[i]=0;
+} 
