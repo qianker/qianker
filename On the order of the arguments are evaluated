@@ -1,0 +1,19 @@
+#include<stdio.h>
+void main()
+{
+ int n;
+ int power(int m,int n);
+ printf(“Input data:”);
+ scanf(“%d”,&n);
+ n=power(n,n--);
+ printf(“Retult:%d\n”,n);
+}
+int power(int x,int y)
+{
+ int p;
+ for(p=1;y>0;--y)
+ {
+   p=p*x;
+ }
+ return p;
+}
