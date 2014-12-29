@@ -1,0 +1,49 @@
+#include <reg51.h>
+#define LED P2
+#define SW_port P1
+sbit buzzer=P0^1;
+unsigned char keys;
+
+unsigned char keys;
+unsigned char code tone[]={115,102,91,86,77,68,61,57};
+void sound(unsigned char);
+void delay8us(unsigned char);
+
+void main()
+{
+  while(1)
+  {
+  	LED=SW_port=0xff;
+	keys=~SW_port;
+	switch(keys)
+	{
+	 case 0x01:sound(0);break;
+	 case 0x02:sound(1);break;
+	 case 0x04:sound(2);break;
+	 case 0x08:sound(3);break;
+	 case 0x10:sound(4);break;
+	 case 0x20:sound(5);break;
+	 case 0x40:sound(6);break;
+	 case 0x80:sound(7);break;
+	}
+  }
+}
+
+void sound(unsigned char x)
+{
+  unsigned char i;
+  LED=SW_port;
+  for(i=0;i<60;i++)
+  {
+  	buzzer=0;delay8us(tone[x]);
+	buzzer=1;delay8us(tone[x]);
+  }
+  LED=0xff;
+}
+
+void delay8us(unsigned char x)
+{
+  unsigned char i,j;
+  for(i=0;i<x;i++)
+  for(j=0;j<1;j++);
+}
