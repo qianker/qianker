@@ -1,0 +1,82 @@
+switch(temp)
+{
+case 0x0e:
+key=8;
+break;
+case 0x0d:
+key=9;
+break;
+case 0x0b:
+key=10;
+break;
+case 0x07:
+key=11;
+break;
+}
+temp=P3;
+P1_0=~P1_0;
+P0=table[key];
+STH0=tab[key]/256;
+STL0=tab[key]%256;
+TR0=1;
+temp=temp & 0x0f;
+while(temp!=0x0f)
+{
+temp=P3;
+temp=temp & 0x0f;
+}
+TR0=0;
+}
+}
+P3=0xff;
+P3_7=0;
+temp=P3;
+temp=temp & 0x0f;
+if (temp!=0x0f)
+{
+for(i=50;i>0;i--)
+for(j=200;j>0;j--);
+temp=P3;
+temp=temp & 0x0f;
+if (temp!=0x0f)
+{
+temp=P3;
+temp=temp & 0x0f;
+switch(temp)
+{
+case 0x0e:
+key=12;
+break;
+case 0x0d:
+key=13;
+break;
+case 0x0b:
+key=14;
+break;
+case 0x07:
+key=15;
+break;
+}
+temp=P3;
+P1_0=~P1_0;
+P0=table[key];
+STH0=tab[key]/256;
+STL0=tab[key]%256;
+TR0=1;
+temp=temp & 0x0f;
+while(temp!=0x0f)
+{
+temp=P3;
+temp=temp & 0x0f;
+}
+TR0=0;
+}
+}
+}
+}
+void t0(void) interrupt 1 using 0
+{
+TH0=STH0;
+TL0=STL0;
+P1_0=~P1_0;
+}
