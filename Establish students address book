@@ -1,0 +1,7 @@
+#include<stdio.h>
+#define NUM 3
+struct men
+{
+  char name[20];
+  char phone[10];
+};
